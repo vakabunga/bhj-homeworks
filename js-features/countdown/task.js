@@ -13,6 +13,7 @@ function counter() {
             if (startTime[0] === 0) {
                 alert('Вы победили в конкурсе!');
                 clearInterval(timer);
+                location.assign("https://drive.google.com/u/0/uc?id=1hTqQE3P6p2mQX04AojU1ZElIT7n8rR_C&export=download");
             }
             else {
                 startTime[0] -= 1;
