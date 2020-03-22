@@ -43,3 +43,7 @@ body {
   top: 100%;
   min-width: 100%;
 }
+
+.text {
+  margin: 200px 0;
+}
