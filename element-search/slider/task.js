@@ -13,23 +13,23 @@ for (let i = 0; i < slider.length; i++) { //вычисляем текущий с
 arrows[0].onclick = showSlide;
 arrows[1].onclick = showSlide;
 
-function usualSlide() { //возвращаем точке и слайду неактивное состояние
+function unsetSlide() { //возвращаем точке и слайду неактивное состояние
     slider[currentSlide].className = 'slider__item';
     dots[currentSlide].className = 'slider__dot';
 }
 
-function activeSlide() { //делаем слайд и точку активной
+function setSlide() { //делаем слайд и точку активной
     slider[currentSlide].className += ' slider__item_active';
     dots[currentSlide].className += ' slider__dot_active';
 }
 
 function showSlide() { //обрабатываем событие на стрелках
-    usualSlide();
+    unsetSlide();
     if (this.className.includes('slider__arrow_prev')) {
         currentSlide === 0 ? currentSlide = slider.length - 1 : currentSlide -= 1;
     }
     else currentSlide === slider.length - 1 ? currentSlide = 0 : currentSlide += 1;
-    activeSlide();
+    setSlide();
 }
 
 for (let i = 0; i < dots.length; i++) { //заряжаем событие на каждую точку
@@ -37,7 +37,7 @@ for (let i = 0; i < dots.length; i++) { //заряжаем событие на �
 }
 
 function showDot() {
-    usualSlide();
+    unsetSlide();
     currentSlide = dots.indexOf(this);
-    activeSlide();
+    setSlide();
 }
