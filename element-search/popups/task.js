@@ -1,8 +1,11 @@
 const modal = document.getElementById('modal_main');
 const done = document.getElementById('modal_success');
-modal.className = modal.className + ' modal_active';
+modal.className += ' modal_active';
 const doGood = document.getElementsByClassName('btn btn_danger modal__close show-success');
-doGood[0].onclick = () => done.className = done.className + ' modal_active';
+doGood[0].onclick = () => {
+    modal.className = 'modal';
+    done.className += ' modal_active';
+}
 
 const close = document.getElementsByClassName('modal__close_times');
 for (let i = 0; i < close.length; i++) {
