@@ -1,17 +1,22 @@
-const button = document.getElementsByClassName('dropdown__value');
-const hiddenMenu = Array.from(document.getElementsByClassName('dropdown__list'));
-button[0].addEventListener('click', showMenu);
+const button = Array.from(document.getElementsByClassName('dropdown__value'));
+const hiddenMenu = Array.from(
+  document.getElementsByClassName('dropdown__list')
+);
 
-function showMenu() {
-    !hiddenMenu[0].className.includes('dropdown__list_active') ?
-     hiddenMenu[0].className += ' dropdown__list_active' : 
-     hiddenMenu[0].className = 'dropdown__list';
+for (let i = 0; i < button.length; i++) {
+  button[i].addEventListener('click', e =>
+    !e.target.nextElementSibling.className.includes('dropdown__list_active')
+      ? (e.target.nextElementSibling.className += ' dropdown__list_active')
+      : (e.target.nextElementSibling.className = 'dropdown__list')
+  );
 }
 
-hiddenMenu[0].addEventListener('click', selectMenuItem);
-hiddenMenu[0].addEventListener('click', showMenu);
+for (let i = 0; i < button.length; i++) {
+  hiddenMenu[i].addEventListener('click', selectMenuItem);
+}
 
 function selectMenuItem(e) {
-    button[0].textContent = e.target.textContent;
-    e.preventDefault();
+  e.currentTarget.previousElementSibling.textContent = e.target.textContent;
+  e.currentTarget.className = 'dropdown__list';
+  e.preventDefault();
 }
