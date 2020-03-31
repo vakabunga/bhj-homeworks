@@ -1,10 +1,7 @@
 const rotatorCases = Array.from(document.querySelectorAll('.rotator'));
-let index = 0;
-rotatorCases.forEach(item => rotation(item.children));
+rotatorCases.forEach(item => rotation(item.children, 0));
 
-function rotation(e) {
-  console.log(e);
-  // debugger;
+function rotation(e, index) {
   index++;
   if (index === Array.from(e).length) {
     e[index - 1].classList.remove('rotator__case_active');
@@ -13,5 +10,5 @@ function rotation(e) {
   e[index].classList.add('rotator__case_active');
   e[index].setAttribute('style', `color: ${e[index].dataset.color}`);
   const timer = Number(e[index].dataset.speed);
-  setTimeout(rotation, timer, e);
+  setTimeout(rotation, timer, e, index);
 }
