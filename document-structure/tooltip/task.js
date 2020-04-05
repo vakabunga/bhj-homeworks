@@ -1,10 +1,16 @@
-const hasTooltip = Array.from(document.querySelectorAll('.has-tooltip'));
-hasTooltip.forEach((elem) => elem.addEventListener('click', showTooltip));
+const hasTooltip = Array.from(document.querySelectorAll('.has-tooltip')); // создаем массив элементов, требующих подсказки
+hasTooltip.forEach((elem) => elem.addEventListener('click', showTooltip)); // вешаем обработчик событий на каждый элемент
 
 function showTooltip(e) {
-  e.preventDefault();
-  const tooltip = document.querySelector('.tooltip_active');
-  if (tooltip != null) tooltip.parentElement.removeChild(tooltip);
+  e.preventDefault(); // отрубаем дефолтную реакцию
+  const tooltip = document.querySelector('.tooltip_active'); // записываем в переменную активную подсказку
+  if (tooltip != null) { // выполняем если активная подсказка существует
+    if (e.target.getAttribute('title') === tooltip.textContent) { // вычисляем на какую подсказку нажали: на ту же или нет
+      tooltip.parentElement.removeChild(tooltip); // если на ту же - удаляем ее и прерываем функцию
+      return;
+    } else tooltip.parentElement.removeChild(tooltip); // если на другую - удаляем и продолжаем код
+  }
+
   e.target.insertAdjacentHTML(
     'afterEnd',
     `<div class="tooltip tooltip_active" style="left: ${e.clientX}px; top: ${
