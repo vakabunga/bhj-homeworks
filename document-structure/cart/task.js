@@ -19,15 +19,15 @@ function changeQuantity(e) {
 }
 //отправляем товар в корзину
 function addToCart(e) {
-  const productID = e.target.closest('.product');
+  const productId = e.target.closest('.product');
   const cartProduct = Array.from(document.querySelectorAll('.cart__product')); // фиксируем элементы, которые уже есть в корзине
   // если в корзине элементов нет, то смело добавляем товар в корзину
   if (cartProduct.length === 0) {
     document.querySelector('.cart').removeAttribute('style');
     cartProducts.insertAdjacentHTML(
       'beforeEnd',
-      `<div class="cart__product" data-id="${productID.dataset.id}">
-        <img class="cart__product-image" src="${productID.querySelector('img').getAttribute('src')}">
+      `<div class="cart__product" data-id="${productId.dataset.id}">
+        <img class="cart__product-image" src="${productId.querySelector('img').getAttribute('src')}">
         <div class="cart__product-count">${e.target.previousElementSibling.children[1].textContent}</div>
       </div>`
     );
@@ -35,8 +35,8 @@ function addToCart(e) {
   else {
     const cartProductsId = cartProduct.map((elem) => elem.dataset.id); // создаем массив из id товаров
     // ищем в этом массиве id элемента, который хотим добавить, если он есть, то увеличиваем количество товара в корзине
-    if (cartProductsId.includes(productID.dataset.id)) {
-      let index = cartProductsId.indexOf(productID.dataset.id);
+    if (cartProductsId.includes(productId.dataset.id)) {
+      let index = cartProductsId.indexOf(productId.dataset.id);
       cartProduct[index].lastElementChild.textContent =
         Number(cartProduct[index].lastElementChild.textContent) +
         Number(e.target.previousElementSibling.children[1].textContent);
@@ -44,11 +44,8 @@ function addToCart(e) {
     else {
       cartProducts.insertAdjacentHTML(
         'beforeEnd',
-        `<div class="cart__product" data-id="${productID.dataset.id}">
-          <img class="cart__product-image" src="${e.target
-            .closest('.product')
-            .querySelector('img')
-            .getAttribute('src')}">
+        `<div class="cart__product" data-id="${productId.dataset.id}">
+          <img class="cart__product-image" src="${productId.querySelector('img').getAttribute('src')}">
           <div class="cart__product-count">${e.target.previousElementSibling.children[1].textContent}</div>
         </div>`
       );
