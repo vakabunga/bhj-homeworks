@@ -4,11 +4,11 @@ hasTooltip.forEach((elem) => elem.addEventListener('click', showTooltip)); // в
 function showTooltip(e) {
   e.preventDefault(); // отрубаем дефолтную реакцию
   const tooltip = document.querySelector('.tooltip_active'); // записываем в переменную активную подсказку
-  if (tooltip != null) { // выполняем если активная подсказка существует
-    if (e.target.getAttribute('title') === tooltip.textContent) { // вычисляем на какую подсказку нажали: на ту же или нет
-      tooltip.parentElement.removeChild(tooltip); // если на ту же - удаляем ее и прерываем функцию
-      return;
-    } else tooltip.parentElement.removeChild(tooltip); // если на другую - удаляем и продолжаем код
+  if (tooltip != null) {
+    // если активная подсказка существует, удаляем ее
+    tooltip.parentElement.removeChild(tooltip);
+    // если нажимаем на ту же подсказку - прерываем функцию, чтобы не рисовать подсказку заново
+    if (e.target.getAttribute('title') === tooltip.textContent) return;
   }
 
   e.target.insertAdjacentHTML(
