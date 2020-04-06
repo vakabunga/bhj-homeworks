@@ -15,7 +15,6 @@ xhr.addEventListener('readystatechange', () => {
         </button>`
       );
       const button = Array.from(document.querySelectorAll('.poll__answer'));
-      // debugger;
       if (button.length > 0) {
         button[i].addEventListener('click', () => {
           alert(`Спасибо, ваш голос засчитан!`);
