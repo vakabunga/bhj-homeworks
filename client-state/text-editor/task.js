@@ -8,6 +8,6 @@ button.addEventListener('click', (e) => {
   localStorage.removeItem('textarea');
 });
 // записываем в localStorage текст в textarea при снятии фокуса с текстового поля
-editor.addEventListener('change', () => {
+editor.addEventListener('input', () => {
   localStorage.setItem('textarea', editor.value);
 });
